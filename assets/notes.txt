@@ -1,1 +1,1 @@
-Deny from all
+mysqldump -u chris -p --skip-extended-insert --tables  loc_beautifulform_com > /Chris/Websites/loc.beautifulforms.com/assets/database/full-dump.sql
