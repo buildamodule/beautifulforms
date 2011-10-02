@@ -22,8 +22,8 @@ function beauty01sidelabel_menu() {
  */
 function beauty01sidelabel_form($form, &$form_state) {
   
-  drupal_add_css(drupal_get_path('module', 'beauty01sidelabel') . '/beauty01sidelabel.css');
-  //drupal_add_css(drupal_get_path('module', 'beauty01sidelabel') . '/beauty01sidelabel.less');
+  //drupal_add_css(drupal_get_path('module', 'beauty01sidelabel') . '/beauty01sidelabel.css');
+  drupal_add_css(drupal_get_path('module', 'beauty01sidelabel') . '/beauty01sidelabel.less');
   
   $form['name'] = array(
     '#title' => t('Name'),

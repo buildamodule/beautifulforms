@@ -103,7 +103,7 @@ function beauty07ajax_form($form, &$form_state) {
       '#type' => 'textfield',
     );
     
-    if ($form_state['values']['subaccount_' . ($i) . '_name'] == '') {
+    if (!isset($form_state['values']) || $form_state['values']['subaccount_' . ($i) . '_name'] == '') {
       $more_accounts = FALSE;
     }
     

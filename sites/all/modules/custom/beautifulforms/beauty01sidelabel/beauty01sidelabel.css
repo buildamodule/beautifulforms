@@ -4,7 +4,7 @@
   padding-right:10px;
   text-align:right;
 }
-#beauty01sidelabel-form textarea, .grippie, .form-text {
+#beauty01sidelabel-form textarea, #beauty01sidelabel-form .form-text {
   width:300px;
 }
 
