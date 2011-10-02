@@ -14,7 +14,7 @@
  */
 function beauty06state_menu() {
   $items['beauty/beauty06state'] = array(
-    'title' => 'Showing and hiding inputs with the #state attribute',
+    'title' => 'Showing and hiding inputs with the #states attribute',
     'page callback' => 'beauty06state_page',
     'access callback' => TRUE,
   );
