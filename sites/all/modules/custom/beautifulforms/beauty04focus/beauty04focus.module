@@ -1,0 +1,64 @@
+<?php
+
+/**
+ * @file
+ * Demonstrates how to use stylized field focus.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function beauty04focus_menu() {
+  $items['beauty/beauty04focus'] = array(
+    'title' => 'Adding stylized focus',
+    'page callback' => 'beauty04focus_page',
+    'access callback' => TRUE,
+  );
+  return $items;
+}
+
+
+/**
+ * Returns form render array.
+ */
+function beauty04focus_form($form, &$form_state) {
+  
+  drupal_add_css(drupal_get_path('module', 'beauty04focus') . '/beauty04focus.less');
+  drupal_add_js(drupal_get_path('module', 'beauty04focus') . '/beauty04focus.js');
+  
+  $form['name'] = array(
+    '#title' => t('Name'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#description' => t('Your full name, please'),
+  );
+  $form['email'] = array(
+    '#title' => t('Email'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#description' => t('Your e-mail address.'),
+  );
+  $form['company'] = array(
+    '#title' => t('Company Name'),
+    '#type' => 'textfield',
+    '#description' => t('The company you are associated with, if any.'),
+  );
+  $form['explain'] = array(
+    '#title' => t('Please explain your what makes you a prime candidate for our beta test'),
+    '#type' => 'textarea',
+    '#resizable' => TRUE,
+    '#description' => t('Beta spaces are limited, but let us know if there is a really good reason to let you in.'),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+  );
+  return $form;
+}
+
+/**
+ * Menu callback.
+ */
+function beauty04focus_page() {
+  return drupal_get_form('beauty04focus_form');
+}

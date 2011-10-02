@@ -1,0 +1,117 @@
+<?php
+
+/**
+ * @file
+ * Demonstrates how to show and and hide inputs with the #state attribute.
+ *
+ * Great documentation here:
+ * http://api.drupal.org/api/drupal/includes--common.inc/function/drupal_process_states/7
+ * Includes list of possible states.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function beauty06state_menu() {
+  $items['beauty/beauty06state'] = array(
+    'title' => 'Showing and hiding inputs with the #state attribute',
+    'page callback' => 'beauty06state_page',
+    'access callback' => TRUE,
+  );
+  return $items;
+}
+
+
+/**
+ * Returns form render array.
+ */
+function beauty06state_form($form, &$form_state) {
+  
+  $form['name'] = array(
+    '#title' => t('Name'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#description' => t('Your full name, please'),
+  );
+  $form['email'] = array(
+    '#title' => t('Email'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#description' => t('Your e-mail address.'),
+  );
+  $form['company'] = array(
+    '#title' => t('Company Name'),
+    '#type' => 'textfield',
+    '#description' => t('The company you are associated with, if any.'),
+  );
+  $form['explain'] = array(
+    '#title' => t('Please explain your what makes you a prime candidate for our beta test'),
+    '#type' => 'textarea',
+    '#resizable' => TRUE,
+    '#description' => t('Beta spaces are limited, but let us know if there is a really good reason to let you in.'),
+  );
+  $form['subaccount_1'] = array(
+    '#type' => 'fieldset',
+    '#title' => 'Sub account 1',
+  );
+  $form['subaccount_1']['subaccount_1_name'] = array(
+    '#title' => t('Name'),
+    '#type' => 'textfield',
+  );
+  $form['subaccount_1']['subaccount_1_email'] = array(
+    '#title' => t('Email'),
+    '#type' => 'textfield',
+  );
+  $form['subaccount_2'] = array(
+    '#type' => 'fieldset',
+    '#title' => 'Sub account 2',
+    '#states' => array(
+      'visible' => array(
+        ':input[name="subaccount_1_name"]' => array('filled' => TRUE),
+      ),
+    ),
+  );
+  $form['subaccount_2']['subaccount_2_name'] = array(
+    '#title' => t('Name'),
+    '#type' => 'textfield',
+  );
+  $form['subaccount_2']['subaccount_2_email'] = array(
+    '#title' => t('Email'),
+    '#type' => 'textfield',
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+  );
+  
+  /*
+  // And a loop
+  for ($i = 3; $i < 10; $i++) {
+    $form['subaccount_' . $i] = array(
+      '#type' => 'fieldset',
+      '#title' => 'Sub account '. $i,
+      '#states' => array(
+        'visible' => array(
+          ':input[name="subaccount_'. ($i - 1) .'_name"]' => array('filled' => TRUE),
+        ),
+      ),
+    );
+    $form['subaccount_'. $i]['subaccount_'. $i .'_name'] = array(
+      '#title' => t('Name'),
+      '#type' => 'textfield',
+    );
+    $form['subaccount_'. $i]['subaccount_'. $i .'_email'] = array(
+      '#title' => t('Email'),
+      '#type' => 'textfield',
+    );
+  }
+  */
+  return $form;
+}
+
+/**
+ * Menu callback.
+ */
+function beauty06state_page() {
+  return drupal_get_form('beauty06state_form');
+}

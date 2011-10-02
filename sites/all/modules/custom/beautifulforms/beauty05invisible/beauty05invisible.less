@@ -1,0 +1,45 @@
+.shadow (@radius:12px) {
+  -moz-box-shadow: 0px 0px @radius #666;
+  -webkit-box-shadow: 0px 0px @radius #666;
+  box-shadow: 0px 0px @radius #666;
+}
+
+#beauty05invisible-form {
+  background:url('paper-bg.jpg');
+  padding:50px;
+  .shadow();
+  .form-text, textarea {
+    background:transparent;
+    border:0px;
+    border-bottom:1px solid #333;
+  }
+  .description, .grippie {
+    display:none;
+  }
+  #edit-submit {
+    background:none;
+    border:none;
+    color:#333;
+    font-size:24px !important;
+    font-style-italic;
+    text-transform:uppercase;
+  }
+  
+  /* Also bring in code to float to left */
+  @label_width: 200px;
+  @field_width: 300px;
+  @label_padding: 10px;
+  label {
+    float:left;
+    width:@label_width - @label_padding;
+    padding-right:@label_padding;
+    text-align:right;
+  }
+  textarea, .grippie, .form-text {
+    width:@field_width;
+  }
+  .description, .grippie, .form-submit {
+    margin-left:@label_width;
+    width:@field_width;
+  }
+}

@@ -1,0 +1,148 @@
+<?php
+
+/**
+ * @file
+ * Demonstrates how to show and and hide inputs with the #state attribute.
+ *
+ * Great documentation here:
+ * http://api.drupal.org/api/drupal/includes--common.inc/function/drupal_process_states/7
+ * Includes list of possible states.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function beauty07ajax_menu() {
+  $items['beauty/beauty07ajax'] = array(
+    'title' => 'Adding inputs with the #ajax attribute',
+    'page callback' => 'beauty07ajax_page',
+    'access callback' => TRUE,
+  );
+  return $items;
+}
+
+
+/**
+ * Returns form render array.
+ */
+function beauty07ajax_form($form, &$form_state) {
+  
+  $form['name'] = array(
+    '#title' => t('Name'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#description' => t('Your full name, please'),
+  );
+  $form['email'] = array(
+    '#title' => t('Email'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#description' => t('Your e-mail address.'),
+  );
+  
+  // Simple 2-account ajax loading.
+  $form['subaccount_1'] = array(
+    '#type' => 'fieldset',
+    '#title' => 'Sub account 1',
+    '#suffix' => '<div id="subaccount_2_wrapper"></div>',
+  );
+  $form['subaccount_1']['subaccount_1_name'] = array(
+    '#title' => t('Name'),
+    '#type' => 'textfield',
+    '#ajax' => array(
+      'callback' => 'beauty07ajax_subaccount_callback',
+      'wrapper' => 'subaccount_2_wrapper',
+     ),
+  );
+  $form['subaccount_1']['subaccount_1_email'] = array(
+    '#title' => t('Email'),
+    '#type' => 'textfield',
+  );
+  
+  
+  // Load second account if first account name has value.
+  if (isset($form_state['values']['subaccount_1_name'])) {
+    $form['subaccount_2'] = array(
+      '#type' => 'fieldset',
+      '#title' => 'Sub account 2',
+    );
+    $form['subaccount_2']['subaccount_2_name'] = array(
+      '#title' => t('Name'),
+      '#type' => 'textfield',
+    );
+    $form['subaccount_2']['subaccount_2_email'] = array(
+      '#title' => t('Email'),
+      '#type' => 'textfield',
+    );
+  }
+  
+  
+  
+  /*
+  // Looping version for infinite accounts.
+
+  $more_accounts = TRUE;
+  $i = 1;
+  
+  while ($more_accounts == TRUE) {
+    $form['subaccount_'. $i] = array(
+      '#type' => 'fieldset',
+      '#title' => 'Sub account '. $i,
+      '#suffix' => '<div id="subaccount_' . ($i + 1) . '_wrapper"></div>',
+    );
+    $form['subaccount_' . $i]['subaccount_' . $i . '_name'] = array(
+      '#title' => t('Name'),
+      '#type' => 'textfield',
+      '#ajax' => array(
+        'callback' => 'beauty07ajax_subaccount_callback',
+        'wrapper' => 'subaccount_' . ($i + 1) . '_wrapper',
+       ),
+    );
+    $form['subaccount_' . $i]['subaccount_' . $i . '_email'] = array(
+      '#title' => t('Email'),
+      '#type' => 'textfield',
+    );
+    
+    if ($form_state['values']['subaccount_' . ($i) . '_name'] == '') {
+      $more_accounts = FALSE;
+    }
+    
+    $i++;
+  }
+  */
+  
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+  );
+  
+  return $form;
+}
+
+/**
+ * Ajax callback for subaccount input in beauty07ajax_form form.
+ */
+function beauty07ajax_subaccount_callback($form, $form_state) {
+  return $form['subaccount_2'];
+  
+  // Loop for infinite inputs
+  /*
+  $more_accounts = TRUE;
+  $i = 1;
+  while ($more_accounts == TRUE) {
+    if ($form_state['values']['subaccount_' . ($i) . '_name'] == '') {
+      $more_accounts = FALSE;
+    }
+    $i++;
+  }
+  return $form['subaccount_' . ($i-1)];
+  */
+
+}
+
+/**
+ * Menu callback.
+ */
+function beauty07ajax_page() {
+  return drupal_get_form('beauty07ajax_form');
+}

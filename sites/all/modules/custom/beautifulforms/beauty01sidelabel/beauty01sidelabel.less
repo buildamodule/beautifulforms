@@ -1,0 +1,19 @@
+@label_width: 200px;
+@field_width: 300px;
+@label_padding: 10px;
+
+#beauty01sidelabel-form {
+  label {
+    float:left;
+    width:@label_width - @label_padding;
+    padding-right:@label_padding;
+    text-align:right;
+  }
+  textarea, .grippie, .form-text {
+    width:@field_width;
+  }
+  .description, .grippie, .form-submit {
+    margin-left:@label_width;
+    width:@field_width;
+  }
+}
