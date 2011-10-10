@@ -1,3 +1,4 @@
 name = 5. Change background and make inputs invisible at /beauty/beauty05invisible
 package = Beautiful Forms
+dependencies[] = less
 core = 7.x

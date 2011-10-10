@@ -1,3 +1,4 @@
 name = 4. Change look of focused input at /beauty/beauty04focus
 package = Beautiful Forms
+dependencies[] = less
 core = 7.x
