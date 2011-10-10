@@ -1,0 +1,11 @@
+<?php
+
+/**
+ * @file
+ * Demonstrates how to use in-field icons
+ */
+
+
+function beauty08icons_init() {
+  drupal_add_css(drupal_get_path('module', 'beauty08icons') . '/beauty08icons.less');
+}

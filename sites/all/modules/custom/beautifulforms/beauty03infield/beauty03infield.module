@@ -1,0 +1,69 @@
+<?php
+
+/**
+ * @file
+ * Demonstrates how to use in-field labels.
+ *
+ * - Learn how the jQuery works at http://www.viget.com/inspire/a-better-jquery-in-field-label-plugin/
+ * - Another option is to use the Compact Forms module - http://drupal.org/project/compact_forms
+ * - Yet another option is to use the HTML5 'placeholder attribute
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function beauty03infield_menu() {
+  $items['beauty/beauty03infield'] = array(
+    'title' => 'Adding in-field labels',
+    'page callback' => 'beauty03infield_page',
+    'access callback' => TRUE,
+  );
+  return $items;
+}
+
+
+/**
+ * Returns form render array.
+ */
+function beauty03infield_form($form, &$form_state) {
+  
+  drupal_add_css(drupal_get_path('module', 'beauty03infield') . '/beauty03infield.less');
+  drupal_add_js(drupal_get_path('module', 'beauty03infield') . '/jquery.infieldlabel.min.js');
+  drupal_add_js(drupal_get_path('module', 'beauty03infield') . '/beauty03infield.js');
+  
+  $form['name'] = array(
+    '#title' => t('Name'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#description' => t('Your full name, please'),
+  );
+  $form['email'] = array(
+    '#title' => t('Email'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#description' => t('Your e-mail address.'),
+  );
+  $form['company'] = array(
+    '#title' => t('Company Name'),
+    '#type' => 'textfield',
+    '#description' => t('The company you are associated with, if any.'),
+  );
+  $form['explain'] = array(
+    '#title' => t('Please explain your what makes you a prime candidate for our beta test'),
+    '#type' => 'textarea',
+    '#resizable' => TRUE,
+    '#description' => t('Beta spaces are limited, but let us know if there is a really good reason to let you in.'),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+  );
+  return $form;
+}
+
+/**
+ * Menu callback.
+ */
+function beauty03infield_page() {
+  return drupal_get_form('beauty03infield_form');
+}
