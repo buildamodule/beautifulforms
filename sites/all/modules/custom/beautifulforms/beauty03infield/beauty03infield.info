@@ -1,4 +1,4 @@
-name = 3. Add in-field labels to our form on /beauty/beauty03infield
+name = 03. Add in-field labels to our form on /beauty/beauty03infield
 package = Beautiful Forms
 dependencies[] = less
 core = 7.x

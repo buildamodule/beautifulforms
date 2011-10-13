@@ -76,41 +76,6 @@ function beauty07ajax_form($form, &$form_state) {
     );
   }
   
-  
-  
-  /*
-  // Looping version for infinite accounts.
-
-  $more_accounts = TRUE;
-  $i = 1;
-  
-  while ($more_accounts == TRUE) {
-    $form['subaccount_'. $i] = array(
-      '#type' => 'fieldset',
-      '#title' => 'Sub account '. $i,
-      '#suffix' => '<div id="subaccount_' . ($i + 1) . '_wrapper"></div>',
-    );
-    $form['subaccount_' . $i]['subaccount_' . $i . '_name'] = array(
-      '#title' => t('Name'),
-      '#type' => 'textfield',
-      '#ajax' => array(
-        'callback' => 'beauty07ajax_subaccount_callback',
-        'wrapper' => 'subaccount_' . ($i + 1) . '_wrapper',
-       ),
-    );
-    $form['subaccount_' . $i]['subaccount_' . $i . '_email'] = array(
-      '#title' => t('Email'),
-      '#type' => 'textfield',
-    );
-    
-    if (!isset($form_state['values']) || $form_state['values']['subaccount_' . ($i) . '_name'] == '') {
-      $more_accounts = FALSE;
-    }
-    
-    $i++;
-  }
-  */
-  
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => 'Submit',
@@ -124,20 +89,6 @@ function beauty07ajax_form($form, &$form_state) {
  */
 function beauty07ajax_subaccount_callback($form, $form_state) {
   return $form['subaccount_2'];
-  
-  // Loop for infinite inputs
-  /*
-  $more_accounts = TRUE;
-  $i = 1;
-  while ($more_accounts == TRUE) {
-    if ($form_state['values']['subaccount_' . ($i) . '_name'] == '') {
-      $more_accounts = FALSE;
-    }
-    $i++;
-  }
-  return $form['subaccount_' . ($i-1)];
-  */
-
 }
 
 /**

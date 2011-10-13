@@ -12,10 +12,10 @@
 /**
  * Implements hook_menu().
  */
-function beauty06state_menu() {
-  $items['beauty/beauty06state'] = array(
-    'title' => 'Showing and hiding inputs with the #states attribute',
-    'page callback' => 'beauty06state_page',
+function beauty09stateloop_menu() {
+  $items['beauty/beauty09stateloop'] = array(
+    'title' => 'Showing and hiding inputs with the #states attribute (in a loop)',
+    'page callback' => 'beauty09stateloop_page',
     'access callback' => TRUE,
   );
   return $items;
@@ -25,7 +25,7 @@ function beauty06state_menu() {
 /**
  * Returns form render array.
  */
-function beauty06state_form($form, &$form_state) {
+function beauty09stateloop_form($form, &$form_state) {
   
   $form['name'] = array(
     '#title' => t('Name'),
@@ -50,7 +50,6 @@ function beauty06state_form($form, &$form_state) {
     '#resizable' => TRUE,
     '#description' => t('Beta spaces are limited, but let us know if there is a really good reason to let you in.'),
   );
-  
   $form['subaccount_1'] = array(
     '#type' => 'fieldset',
     '#title' => 'Sub account 1',
@@ -63,7 +62,6 @@ function beauty06state_form($form, &$form_state) {
     '#title' => t('Email'),
     '#type' => 'textfield',
   );
-  
   $form['subaccount_2'] = array(
     '#type' => 'fieldset',
     '#title' => 'Sub account 2',
@@ -85,13 +83,34 @@ function beauty06state_form($form, &$form_state) {
     '#type' => 'submit',
     '#value' => 'Submit',
   );
-  
+
+  // And a loop
+  for ($i = 3; $i < 10; $i++) {
+    $form['subaccount_' . $i] = array(
+      '#type' => 'fieldset',
+      '#title' => 'Sub account '. $i,
+      '#states' => array(
+        'visible' => array(
+          ':input[name="subaccount_'. ($i - 1) .'_name"]' => array('filled' => TRUE),
+        ),
+      ),
+    );
+    $form['subaccount_'. $i]['subaccount_'. $i .'_name'] = array(
+      '#title' => t('Name'),
+      '#type' => 'textfield',
+    );
+    $form['subaccount_'. $i]['subaccount_'. $i .'_email'] = array(
+      '#title' => t('Email'),
+      '#type' => 'textfield',
+    );
+  }
+
   return $form;
 }
 
 /**
  * Menu callback.
  */
-function beauty06state_page() {
-  return drupal_get_form('beauty06state_form');
+function beauty09stateloop_page() {
+  return drupal_get_form('beauty09stateloop_form');
 }

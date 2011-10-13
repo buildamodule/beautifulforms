@@ -1,4 +1,4 @@
-name = 8. Add background icon to search form and hide submit button
+name = 08. Add background icon to search form and hide submit button
 package = Beautiful Forms
 dependencies[] = less
 core = 7.x

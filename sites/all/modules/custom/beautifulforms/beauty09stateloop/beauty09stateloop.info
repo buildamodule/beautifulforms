@@ -1,0 +1,3 @@
+name = 09. Dynamically show and hide inputs with the #states attribute in a loop at /beauty/beauty09stateloop
+package = Beautiful Forms
+core = 7.x

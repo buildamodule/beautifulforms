@@ -1,4 +1,4 @@
-name = 2. Demonstrates example 1 with LESS CSS preprocessing /beauty/beauty02lesscss
+name = 02. Demonstrates example 1 with LESS CSS preprocessing /beauty/beauty02lesscss
 package = Beautiful Forms
 core = 7.x
 dependencies[] = less
