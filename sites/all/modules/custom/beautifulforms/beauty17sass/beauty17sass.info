@@ -1,0 +1,4 @@
+name = 17. Test out the SASS preprocessor at /beauty/beauty17sass
+package = Beautiful Forms
+dependencies[] = sass
+core = 7.x

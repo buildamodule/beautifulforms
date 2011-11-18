@@ -1,0 +1,3 @@
+name = 11. Add client side validation (and a little AJAX) at /beauty/beauty11validate
+package = Beautiful Forms
+core = 7.x

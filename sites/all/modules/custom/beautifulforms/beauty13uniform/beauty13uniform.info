@@ -1,0 +1,4 @@
+name = 13. Unify form styling across browsers with Uniform at /beauty/beauty13uniform
+package = Beautiful Forms
+dependencies[] = uniform
+core = 7.x

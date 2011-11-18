@@ -1,0 +1,45 @@
+/* Use this stylesheet for print styles only. */
+/* line 2, ../sass/print.sass */
+* {
+  background-color: transparent;
+}
+
+/* line 5, ../sass/print.sass */
+.sidebar,
+#navigation,
+#header-region,
+#search-theme-form,
+#footer,
+.breadcrumb,
+.tabs,
+.feed-icon,
+.links {
+  display: none;
+}
+
+/* line 16, ../sass/print.sass */
+#page {
+  width: 100%;
+}
+
+/* line 19, ../sass/print.sass */
+#content,
+#content #content-inner,
+.content,
+.title {
+  margin: 20px 0;
+  width: auto;
+}
+
+/* line 27, ../sass/print.sass */
+a:hover, a:active, a:link, a:visited {
+  color: black;
+}
+
+/* CSS2 selector to add visible href after links. */
+/* line 35, ../sass/print.sass */
+#content a:link:after, #content a:visited:after {
+  content: " (" attr(href) ") ";
+  font-size: 0.8em;
+  font-weight: normal;
+}

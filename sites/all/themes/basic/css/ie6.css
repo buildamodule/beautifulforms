@@ -1,0 +1,67 @@
+/* Yes, we all hate IE6. */
+/* Fix the admin page in ie6. */
+/* line 5, ../sass/ie6.sass */
+div.admin .left,
+div.admin .right {
+  width: 46%;
+}
+
+/* Tabs CSS - IE 5 and 6 don't support PNGs with alpha transparency. */
+/* line 10, ../sass/ie6.sass */
+ul.primary,
+ul.secondary {
+  width: 100%;
+  width: auto;
+}
+/* line 14, ../sass/ie6.sass */
+ul.primary li a,
+ul.primary li a .tab,
+ul.secondary li a,
+ul.secondary li a .tab {
+  display: inline;
+  display: inline-block;
+}
+
+/* line 21, ../sass/ie6.sass */
+ul.primary li a {
+  background: url(../images/tabs/tab-left-ie6.png) no-repeat left -38px;
+}
+/* line 23, ../sass/ie6.sass */
+ul.primary li a .tab {
+  background: url(../images/tabs/tab-right-ie6.png) no-repeat right -38px;
+}
+/* line 25, ../sass/ie6.sass */
+ul.primary li a:hover {
+  cursor: pointer;
+  color: #555555;
+  text-decoration: none;
+  background-position: left -76px;
+}
+/* line 30, ../sass/ie6.sass */
+ul.primary li a:hover .tab {
+  background-position: right -76px;
+}
+/* line 33, ../sass/ie6.sass */
+ul.primary li.active a, ul.primary li.active a:hover {
+  background: url(../images/tabs/tab-left-ie6.png) no-repeat left 0;
+}
+/* line 35, ../sass/ie6.sass */
+ul.primary li.active a .tab, ul.primary li.active a:hover .tab {
+  background: url(../images/tabs/tab-right-ie6.png) no-repeat right 0;
+}
+
+/* line 41, ../sass/ie6.sass */
+ul.secondary li a:hover {
+  cursor: pointer;
+  color: #555555;
+  text-decoration: none;
+}
+
+/* Drupal admin tables */
+/* line 49, ../sass/ie6.sass */
+#content tr.even th,
+#content tr.even td,
+#content tr.odd th,
+#content tr.odd td {
+  border-bottom: 1px solid #cccccc;
+}

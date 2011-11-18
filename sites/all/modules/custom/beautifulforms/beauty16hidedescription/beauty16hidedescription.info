@@ -1,0 +1,4 @@
+name = 16. Show descriptions only for current element at /beauty/beauty16hidedescription
+package = Beautiful Forms
+dependencies[] = less
+core = 7.x

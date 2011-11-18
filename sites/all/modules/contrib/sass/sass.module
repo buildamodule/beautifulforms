@@ -1,0 +1,99 @@
+<?php
+
+/**
+ * Implementation of hook_menu
+ */
+function sass_menu() {
+  $items['admin/config/development/sass'] = array(
+    'title' => 'SASS/SCSS',
+    'description' => t('Configure the behaviour of the SaSS/SCSS library'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('sass_settings_form'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'sass.admin.inc',
+  );
+
+  return $items;
+}
+
+/**
+ * Called every page load
+ * @param  $variables
+ * @return null
+ */
+function sass_preprocess_page(&$variables) {
+
+  $SassParser_config = array(
+    'style' => 'nested',  // nested (default), expanded, compact, compressed
+    'cache' => FALSE,     // true (default) or false
+    'syntax' => 'scss',    // sass (default), scss, sassc
+    'extensions' => array('compass'=>array()),
+  );
+
+  if (!variable_get('sass_development_mode', TRUE)) {
+    return;
+  }
+
+  # Bring in the theme info
+  global $theme_info;
+
+  # The global $theme_path variable points for some reason points
+  # to the base theme if the theme is a subtheme, ergo
+  $theme_path = drupal_get_path('theme', $theme_info->name);
+
+  //  $phamlp_library = drupal_get_path('library', 'phamlp');
+  //  var_dump($phamlp_library);
+
+  $sassparser_path = dirname(__FILE__) . '/phamlp/sass/SassParser.php';
+
+  // Checking if parser file exists and we have at least one theme
+  // in Drupal 7, when you open admin section with overlay, you don't have any theme.
+  if (file_exists($sassparser_path) && isset($theme_info->stylesheets['all']) && count($theme_info->stylesheets['all']) > 0) {
+
+    // Include parser lib
+    include_once $sassparser_path;
+
+    // Iterate each theme stylesheet
+    foreach ($theme_info->stylesheets['all'] as $stylesheet) {
+      $scss = str_replace('.css', '.'.$SassParser_config['syntax'], $stylesheet);
+
+      // if we have Scss file and it modified after last compile
+      if (file_exists($scss) && (!file_exists($stylesheet) || (filemtime($scss) > filemtime($stylesheet)))) {
+
+        // check css file permissions and writeable - if the file doesn't exist
+        // yet, we use the directory it's in
+        if (file_exists($stylesheet)) {
+          $stylesheet_permissions = sass_file_perms($stylesheet);
+          $is_writable = is_writable($stylesheet);
+        }
+        else {
+          $stylesheet_permissions = sass_file_perms(dirname($stylesheet));
+          $is_writable = is_writable(dirname($stylesheet));
+        }
+
+        if ($is_writable) {
+
+          $sass_parser = new SassParser($SassParser_config);
+          $converted_css = $sass_parser->toCss($scss);
+
+          file_put_contents($stylesheet, $converted_css);
+          if (variable_get('sass_show_development_mode_warning', TRUE)) {
+            drupal_set_message(t('Your SASS / SCSS stylesheets are currently being rebuilt on every request. Ensure you disable <a href="@link">development mode</a> for production sites.', array('@link' => url('admin/config/development/sass'))), 'warning');
+          }
+        }
+        else {
+          drupal_set_message(t('Your SASS / SCSS stylesheets are currently not being rebuilt due to the permissions on the stylesheet file "@file". Please grant more rights. Current permissions are @perms', array('@file' => $stylesheet, '@perms' => $stylesheet_permissions)), 'error');
+        }
+      }
+    }
+  }
+}
+
+function sass_file_perms($file) {
+  if (!file_exists($file)) {
+    return '000';
+  }
+  else {
+    return substr(decoct(fileperms($file)), 2);
+  }
+}

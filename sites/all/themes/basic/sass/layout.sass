@@ -1,0 +1,192 @@
+@import _variables.sass
+@import _mixins.sass
+
+/* Layout
+  ------
+  Using a negative margin technique, adapted from ZEN. The page is loaded by this order:
+  
+  1. Header
+  2. Content
+  3. Navigation menus
+  4. Sidebar Left
+  5. Sideabr Right
+
+/* remove 'auto' and the width to switch to a fluid width
+#page
+  width: 960px
+  margin: 0 auto
+
+/* Layout rules. (Disclaimer: do not change if you're not sure you know what you're doing.)
+#content
+  float: left
+  width: 100%
+  margin-right: -100%
+  padding: 0
+
+.sidebar
+  float: left
+
+#sidebar-second
+  float: right
+
+#footer
+  float: none
+  clear: both
+
+/* Layout Helpers
+#header,
+#footer,
+.mission,
+.breadcrumb,
+.node
+  clear: both
+
+/* Sidebars width
+  --------------
+  Changing the width of the sidebars is dead easy, just change the
+  values below corresponding to the sidebar you want to modify.
+  Make sure you keep negative values as negative values.
+  For example, if I want to increase the width of the left sidebar
+  to 300px, I would have to change each '190' to '300'.
+
+// Left value.
+.two-sidebars,
+.sidebar-first
+  .center
+    margin-left: $first_sidebar_width
+
+// Left value & negative left value.
+#sidebar-first
+  width: $first_sidebar_width
+  margin-right: -$first_sidebar_width
+
+.two-sidebars,
+.sidebar-second
+  .center
+    margin-right: $second_sidebar_width
+
+// Right value.
+#sidebar-second
+  width: $second_sidebar_width
+
+/* Columns Inner
+  -------------
+  You can change the padding inside the columns without changing the
+  width of them by just usinbg the INNER div of each column
+.inner
+  padding: 0
+
+/* Navigation styles
+  -----------------
+  The navigation is loaded after the content, so we need to make space
+  for it, equal to its height, so if you change the height of the navigation,
+  remember to adapt the margin top of the content and sidebars.
+#navigation
+  float: left
+  margin-left: 0
+  margin-right: -100%
+  padding: 0
+  width: 100%
+  height: 40px
+
+// Navigation height.
+.with-navigation
+  #content,
+  .sidebar
+    margin-top: 40px
+@import _variables.sass
+@import _mixins.sass
+
+/* Layout
+  ------
+  Using a negative margin technique, adapted from ZEN. The page is loaded by this order:
+  
+  1. Header
+  2. Content
+  3. Navigation menus
+  4. Sidebar Left
+  5. Sideabr Right
+
+/* remove 'auto' and the width to switch to a fluid width
+#page
+  width: 960px
+  margin: 0 auto
+
+/* Layout rules. (Disclaimer: do not change if you're not sure you know what you're doing.)
+#content
+  float: left
+  width: 100%
+  margin-right: -100%
+  padding: 0
+
+.sidebar
+  float: left
+
+#sidebar-second
+  float: right
+
+#footer
+  float: none
+  clear: both
+
+/* Layout Helpers
+#header,
+#footer,
+.mission,
+.breadcrumb,
+.node
+  clear: both
+
+/* Sidebars width
+  --------------
+  Changing the width of the sidebars is dead easy, just change the
+  values below corresponding to the sidebar you want to modify.
+  Make sure you keep negative values as negative values.
+  For example, if I want to increase the width of the left sidebar
+  to 300px, I would have to change each '190' to '300'.
+
+// Left value.
+.two-sidebars,
+.sidebar-first
+  .center
+    margin-left: $first_sidebar_width
+
+// Left value & negative left value.
+#sidebar-first
+  width: $first_sidebar_width
+  margin-right: -$first_sidebar_width
+
+.two-sidebars,
+.sidebar-second
+  .center
+    margin-right: $second_sidebar_width
+
+// Right value.
+#sidebar-second
+  width: $second_sidebar_width
+
+/* Columns Inner
+  -------------
+  You can change the padding inside the columns without changing the
+  width of them by just usinbg the INNER div of each column
+.inner
+  padding: 0
+
+/* Navigation styles
+  -----------------
+  The navigation is loaded after the content, so we need to make space
+  for it, equal to its height, so if you change the height of the navigation,
+  remember to adapt the margin top of the content and sidebars.
+#navigation
+  float: left
+  margin-left: 0
+  margin-right: -100%
+  padding: 0
+  width: 100%
+  height: 40px
+
+// Navigation height.
+.with-navigation
+  #content,
+  .sidebar
+    margin-top: 40px

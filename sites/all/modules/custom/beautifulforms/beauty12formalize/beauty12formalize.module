@@ -1,0 +1,121 @@
+<?php
+
+/**
+ * @file
+ * Demonstrates how to pull in the Formalize CSS and JS library to make consistant
+ * forms across browsers.
+ *
+ * In the future, you should be able to use the Drupal module: http://drupal.org/project/formalize
+ * For more info on Formalize, see http://formalize.me/
+ */
+
+
+/**
+ * Implements hook_menu().
+ */
+function beauty12formalize_menu() {
+  $items['beauty/beauty12formalize'] = array(
+    'title' => 'With Formalize',
+    'page callback' => 'beauty12formalize_page',
+    'access callback' => TRUE,
+  );
+  $items['beauty/beauty12unformalized'] = array(
+    'title' => 'Without Formalize',
+    'page callback' => 'beauty12unformalized_page',
+    'access callback' => TRUE,
+  );
+  return $items;
+}
+
+
+/**
+ * Returns form render array.
+ */
+function beauty12formalize_form($form, &$form_state) {
+  
+  $form['name'] = array(
+    '#title' => t('Name'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#description' => t('Your full name, please'),
+  );
+  $form['email'] = array(
+    '#title' => t('Email'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#description' => t('Your e-mail address.'),
+  );
+  $form['password'] = array(
+    '#title' => t('Password'),
+    '#type' => 'password',
+    '#required' => TRUE,
+    '#description' => t('An amazingly secure password. See <a href="http://xkcd.com/936/">http://xkcd.com/936/</a>.'),
+  );
+  $form['file'] = array(
+    '#title' => t('File'),
+    '#type' => 'file',
+    '#description' => t('A file input.'),
+  );
+  $form['company_count'] = array(
+    '#title' => t('Company population'),
+    '#type' => 'select',
+    '#required' => TRUE,
+    '#options' => array(
+      'Just 1 guy in an attic',
+      '2-10 people in an attic',
+      '11-50 people in a hip office space with no practical furniture',
+      "More than 50 people and a few we don't remember the names of",
+    ),
+    '#description' => t('How many people in your company?'),
+  );
+  $form['company_type'] = array(
+    '#title' => t('Company type'),
+    '#type' => 'radios',
+    '#required' => TRUE,
+    '#options' => array(
+      'Sole proprietorship',
+      'Anarchy and mayhem',
+      'Ruled by hamsters',
+    ),
+    '#description' => t('Please chose the option that best describes your company.'),
+  );
+  $form['company_values'] = array(
+    '#title' => t('Company values'),
+    '#type' => 'checkboxes',
+    '#required' => TRUE,
+    '#options' => array(
+      "Crush the competition, crush our friends, crush our grandmothers if they get in our way!!!",
+      "Always give back something. Even if it's a moldy cracker.",
+      "Peace and love are our path. And Battlestar Galactica.",
+    ),
+    '#description' => t('Please choose your values.'),
+  );
+
+  $form['explain'] = array(
+    '#title' => t('Please explain your what makes you a prime candidate for our beta test'),
+    '#type' => 'textarea',
+    '#resizable' => TRUE,
+    '#description' => t('Beta spaces are limited, but let us know if there is a really good reason to let you in.'),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+  );
+  return $form;
+}
+
+/**
+ * Menu callback.
+ */
+function beauty12formalize_page() {
+  drupal_add_css(drupal_get_path('module', 'beauty12formalize') . '/formalize.css');
+  drupal_add_js(drupal_get_path('module', 'beauty12formalize') . '/jquery.formalize.js');
+  return drupal_get_form('beauty12formalize_form');
+}
+
+/**
+ * Menu callback.
+ */
+function beauty12unformalized_page() {
+  return drupal_get_form('beauty12formalize_form');
+}

@@ -1,0 +1,97 @@
+<?php
+
+/**
+ * @file
+ * Demonstrates how to theme a form in a table.
+ */
+
+
+/**
+ * Implements hook_menu().
+ */
+function beauty15themetable_menu() {
+  $items['beauty/beauty15themetable'] = array(
+    'title' => 'Theming a form as a table',
+    'page callback' => 'beauty15themetable_page',
+    'access callback' => TRUE,
+  );
+  return $items;
+}
+
+
+/**
+ * Returns form render array.
+ */
+function beauty15themetable_form($form, &$form_state) {
+  
+  $form['name'] = array(
+    '#title' => t('Name'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#description' => t('Your full name, please'),
+  );
+  $form['email'] = array(
+    '#title' => t('Email'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#description' => t('Your e-mail address.'),
+  );
+  $form['company'] = array(
+    '#title' => t('Company Name'),
+    '#type' => 'textfield',
+    '#description' => t('The company you are associated with, if any.'),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+  );
+  return $form;
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+function beauty15themetable_theme() {
+  return array(
+    'beauty15themetable_form' => array(
+      'render element' => 'form'
+    ),
+  );
+}
+
+
+/**
+ * Theme the form in a table.
+ */
+function theme_beauty15themetable_form($variables) {
+  
+  $output = '';
+  
+  $form = $variables['form'];
+  
+  foreach ($form as $key => $element) {
+    // Set which elements to render in the table.
+    $allowed_elements = array('textfield', 'textarea', 'radio', 'radios', 'checkbox', 'checkboxes', 'markup', 'submit', 'file');
+    // Make sure this is an element and it's of a type listed above.
+    if (is_array($form[$key]) && in_array($element['#type'], $allowed_elements)) {
+      $label = $element['#title'];
+      unset($form[$key]['#title']);
+      $rendered = drupal_render($form[$key]);
+      $output .= '<tr><td>'. $label .'</td><td>'. $rendered .'</td></tr>';
+      
+    }
+  }
+  
+  $output = '<table>'. $output .'</table>';
+  $output .= drupal_render_children($form);
+  return $output;
+}
+
+
+/**
+ * Menu callback.
+ */
+function beauty15themetable_page() {
+  return drupal_get_form('beauty15themetable_form');
+}

@@ -1,0 +1,18 @@
+/* Yes, we all hate IE7 too. */
+/* Drupal admin tables. */
+/* line 6, ../sass/ie7.sass */
+#content tr.even th,
+#content tr.even td,
+#content tr.odd th,
+#content tr.odd td {
+  border-bottom: 1px solid #cccccc;
+}
+
+/* Minor fix for primary and secondary tabs in IE */
+/* line 14, ../sass/ie7.sass */
+ul .primary li a:hover,
+ul .secondary li a:hover {
+  cursor: pointer;
+  color: #555555;
+  text-decoration: none;
+}

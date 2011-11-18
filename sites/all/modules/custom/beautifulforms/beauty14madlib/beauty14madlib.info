@@ -1,0 +1,4 @@
+name = 14. Theme a form in Mad Lib style /beauty/beauty14madlib
+package = Beautiful Forms
+dependencies[] = less
+core = 7.x

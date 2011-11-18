@@ -1,0 +1,290 @@
+/* line 63, tabs */
+.tabs-sprite, .tabs-tab-bar, .tabs-tab-left-ie6, .tabs-tab-left, .tabs-tab-right-ie6, .tabs-tab-right, .tabs-tab-secondary-bg, .tabs-tab-secondary {
+  background: url('/images/tabs-sd52a0d1d98.png') no-repeat;
+}
+
+/* line 60, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.tabs-tab-bar {
+  background-position: 0 0;
+}
+
+/* line 60, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.tabs-tab-left-ie6 {
+  background-position: 0 -7px;
+}
+
+/* line 60, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.tabs-tab-left {
+  background-position: 0 -107px;
+}
+
+/* line 60, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.tabs-tab-right-ie6 {
+  background-position: 0 -207px;
+}
+
+/* line 60, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.tabs-tab-right {
+  background-position: 0 -307px;
+}
+
+/* line 60, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.tabs-tab-secondary-bg {
+  background-position: 0 -407px;
+}
+
+/* line 60, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/utilities/sprites/_base.scss */
+.tabs-tab-secondary {
+  background-position: 0 -567px;
+}
+
+/* Font styles. */
+/* line 6, ../sass/style.sass */
+body {
+  margin: 0;
+  /* Setting up font size, leading and font family
+   * http://www.markboulton.co.uk/journal/comments/five-simple-steps-to-better-typography */
+  font: 13px/1.5em "Helvetica Neue", helvetica, Arial, sans-serif;
+  letter-spacing: 0.03em;
+}
+
+/* Links */
+/* line 15, ../sass/style.sass */
+a:link, a:visited {
+  color: blue;
+  text-decoration: none;
+}
+
+/* line 20, ../sass/style.sass */
+a:hover, a:active {
+  color: red;
+  text-decoration: underline;
+}
+
+/* Titles. */
+/* line 25, ../sass/style.sass */
+#site-name {
+  font-size: 2.2em;
+  line-height: 1.3em;
+  font-weight: 300;
+  padding: 0 0 0.5em;
+  margin: 0;
+}
+
+/* line 32, ../sass/style.sass */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.3em;
+}
+
+/* line 35, ../sass/style.sass */
+h1 {
+  font-size: 2.2em;
+  font-weight: 300;
+  padding: 0 0 0.5em;
+  margin: 0;
+  -moz-box-shadow: 0px 0px 5px #333333;
+  -webkit-box-shadow: 0px 0px 5px #333333;
+  -o-box-shadow: 0px 0px 5px #333333;
+  box-shadow: 0px 0px 5px #333333;
+  -moz-border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -o-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -khtml-border-radius: 25px;
+  border-radius: 25px;
+}
+
+/* line 43, ../sass/style.sass */
+h2 {
+  font-size: 1.8em;
+  font-weight: 300;
+  margin-bottom: 0.75em;
+}
+
+/* line 48, ../sass/style.sass */
+h3 {
+  font-size: 1.4em;
+  margin-bottom: 1em;
+}
+
+/* line 52, ../sass/style.sass */
+h4 {
+  font-size: 1.2em;
+  margin-bottom: 0.8em;
+}
+
+/* line 56, ../sass/style.sass */
+h5 {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+/* line 61, ../sass/style.sass */
+h6 {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+/* Paragraph styles. */
+/* line 66, ../sass/style.sass */
+p {
+  margin: 0 0 1em 0;
+}
+
+/* List styles. */
+/* line 70, ../sass/style.sass */
+ul, ol {
+  margin-left: 0;
+  padding-left: 2em;
+}
+
+/* Table styles. */
+/* line 75, ../sass/style.sass */
+table {
+  width: 99%;
+}
+
+/* line 80, ../sass/style.sass */
+tr.even td,
+tr.odd td {
+  padding: 10px 5px;
+}
+
+/* line 83, ../sass/style.sass */
+tr.odd {
+  background-color: white;
+}
+
+/* Code. */
+/* line 87, ../sass/style.sass */
+pre, code, tt {
+  font: 1em "andale mono", "lucida console", monospace;
+  line-height: 1.5;
+}
+
+/* line 91, ../sass/style.sass */
+pre {
+  background-color: #efefef;
+  display: block;
+  padding: 5px;
+  margin: 5px 0;
+  border: 1px solid #aaaaaa;
+}
+
+/* List styles. */
+/* line 99, ../sass/style.sass */
+ul {
+  list-style-type: disc;
+}
+/* line 101, ../sass/style.sass */
+ul ul {
+  list-style-type: circle;
+}
+/* line 103, ../sass/style.sass */
+ul ul ul {
+  list-style-type: square;
+}
+/* line 105, ../sass/style.sass */
+ul ul ul ul {
+  list-style-type: circle;
+}
+
+/* line 108, ../sass/style.sass */
+ol {
+  list-style-type: decimal;
+}
+/* line 110, ../sass/style.sass */
+ol ol {
+  list-style-type: lower-alpha;
+}
+/* line 112, ../sass/style.sass */
+ol ol ol {
+  list-style-type: decimal;
+}
+
+/* Abbreviation. */
+/* line 116, ../sass/style.sass */
+abbr {
+  border-bottom: 1px dotted #666666;
+  cursor: help;
+  white-space: nowrap;
+}
+
+/* UI improvments. */
+/* line 122, ../sass/style.sass */
+#edit-title {
+  font-size: 24px;
+  width: 99%;
+}
+
+/* line 126, ../sass/style.sass */
+#system-themes-form img {
+  width: 100px;
+}
+
+/* line 129, ../sass/style.sass */
+.form-item .description {
+  font-style: italic;
+  line-height: 1.2em;
+  font-size: 0.8em;
+  margin-top: 5px;
+  color: #777777;
+}
+
+/* line 136, ../sass/style.sass */
+#edit-delete {
+  color: #cc0000;
+}
+
+/* Console, style from slate theme. */
+/* line 140, ../sass/style.sass */
+div.messages {
+  padding: 9px;
+  margin: 1em 0;
+  color: #003366;
+  background: #bbddff;
+  border: 1px solid #aaccee;
+}
+
+/* line 147, ../sass/style.sass */
+div.warning {
+  color: #884400;
+  background: #ffee66;
+  border-color: #eedd55;
+}
+
+/* line 152, ../sass/style.sass */
+div.error {
+  color: white;
+  background: #ee6633;
+  border-color: #dd5522;
+}
+
+/* line 157, ../sass/style.sass */
+div.status {
+  color: #336600;
+  background: #ccff88;
+  border-color: #bbee77;
+}
+
+/* Region Colors. delete when starting a new theme. */
+/* line 163, ../sass/style.sass */
+#header, #footer {
+  background: #efefef;
+}
+
+/* line 166, ../sass/style.sass */
+#sidebar-first {
+  background: #e7edff;
+}
+
+/* line 169, ../sass/style.sass */
+#sidebar-second {
+  background: #ffd075;
+}
+
+/* line 172, ../sass/style.sass */
+#navigation {
+  background: #feffa5;
+}

@@ -1,0 +1,142 @@
+<?php
+
+/**
+ * @file
+ * Demonstrates how to apply client-side validation to a form (and some AJAX validation)
+ *
+ * jQuery validate plugin: http://bassistance.de/jquery-plugins/jquery-plugin-validation/
+ * jQuery metadata plugin: http://plugins.jquery.com/project/metadata
+ */
+
+
+/**
+ * Implements hook_menu().
+ */
+function beauty11validate_menu() {
+  
+  // Form page.
+  $items['beauty/beauty11validate'] = array(
+    'title' => 'Client side validation',
+    'page callback' => 'beauty11validate_page',
+    'access callback' => TRUE,
+  );
+  
+  // AJAX callback for username validation.
+  $items['beauty/beauty11validate/validate_username'] = array(
+    'page callback' => 'beauty11validate_page_validate_username_with_ajax',
+    'access callback' => TRUE,
+  );
+  
+  return $items;
+}
+
+
+/**
+ * Returns form render array.
+ */
+function beauty11validate_form($form, &$form_state) {
+  
+  drupal_add_js(drupal_get_path('module', 'beauty11validate') . '/jquery.metadata.js');
+  drupal_add_js(drupal_get_path('module', 'beauty11validate') . '/jquery.validate.min.js');
+  
+  $form_id = 'beauty11validate-form';
+  drupal_add_js('jQuery("#'. $form_id .'").validate();', array('type' => 'inline', 'scope' => 'footer'));
+  
+  // Note that 'required' is added with Drupal. This sets minimum length and custom message.
+  $form['name'] = array(
+    '#title' => t('Real name'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#description' => t('Your full name, please'),
+    '#attributes' => array('class' => array('{minlength:3, messages:{minlength:"Please enter a name longer than {0} characters. Okey dokey?"}}')),
+  );
+  
+  // Use AJAX to check if username exists.
+  $form['username'] = array(
+    '#title' => t('Username'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#description' => t('The username you would prefer'),
+    '#attributes' => array('class' => array('{remote:"/beauty/beauty11validate/validate_username"}')),
+  );
+  
+  // Add email validation with a simple class.
+  $form['email'] = array(
+    '#title' => t('Email'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#description' => t('Your e-mail address.'),
+    '#attributes' => array('class' => array('email')),
+  );
+  
+  // Need to manually set 'required' for radios.
+  $form['company_type'] = array(
+    '#title' => t('Company type'),
+    '#type' => 'radios',
+    '#required' => TRUE,
+    '#options' => array(
+      'Sole proprietorship',
+      'Anarchy and mayhem',
+      'Ruled by hamsters',
+    ),
+    '#description' => t('Please chose the option that best describes your company.'),
+    '#attributes' => array('class' => array('required')),
+  );
+  
+  // URL format checking and modifying required message.
+  $form['url'] = array(
+    '#title' => t('Company URL'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#description' => t('The web address of your company.'),
+    '#attributes' => array('class' => array('{url:true, messages:{required:"MUST HAVE URL!!!",url:"Please stop entering URLs from the future."}}')),
+  );
+  
+  // Numbers only, and limiting the number of numbers to between 5 and 9.
+  $form['zip'] = array(
+    '#title' => t('Company ZIP code'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#description' => t('The zip code of your company.'),
+    '#attributes' => array('class' => array('{number:true,  rangelength:[5, 9], messages:{number:"Feed me digits, feed me now!", rangelength: "Please enter between {0} and {1} digits"}}')),
+  );
+  
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+  );
+  return $form;
+}
+
+
+/**
+ * Menu callback.
+ */
+function beauty11validate_page() {
+  return drupal_get_form('beauty11validate_form');
+}
+
+
+/**
+ * Menu callback for AJAX validation.
+ */
+function beauty11validate_page_validate_username_with_ajax() {
+  
+  // Make sure username is plain text (for security purposes).
+  $username = check_plain($_GET['username']);
+  
+  // Doing a database check to see if the username exists.
+  $query = db_select('users', 'u')
+    ->fields('u')
+    ->condition('name', $username);
+  $result = $query->execute();
+  
+  // If the username is in use, return the error.
+  foreach ($result as $row) {
+    $error = 'Sorry, but '. $username .' is taken, please try another.';
+    die(drupal_json_output($error));
+  }
+  
+  // Otherwise, return true
+  die(drupal_json_output(true));
+}

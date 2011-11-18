@@ -1,0 +1,92 @@
+<?php
+
+/**
+ * @file
+ * Demonstrates how to theme a form in a table.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function beauty14madlib_menu() {
+  $items['beauty/beauty14madlib'] = array(
+    'title' => 'Theming a form like Mad Libs',
+    'page callback' => 'beauty14madlib_page',
+    'access callback' => TRUE,
+  );
+  return $items;
+}
+
+
+/**
+ * Returns form render array.
+ */
+function beauty14madlib_form($form, &$form_state) {
+  
+  drupal_add_css(drupal_get_path('module', 'beauty14madlib') . '/beauty14madlib.less');
+  
+  $form['name'] = array(
+    '#title' => t('Name'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#description' => t('Your full name, please'),
+  );
+  $form['email'] = array(
+    '#title' => t('Email'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+    '#description' => t('Your e-mail address.'),
+  );
+  $form['company'] = array(
+    '#title' => t('Company Name'),
+    '#type' => 'textfield',
+    '#description' => t('The company you are associated with, if any.'),
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+  );
+  return $form;
+}
+
+function beauty14madlib_theme() {
+  return array(
+    'beauty14madlib_form' => array(
+      'render element' => 'form'
+    ),
+  );
+}
+
+function theme_beauty14madlib_form($variables) {
+  
+  $form = $variables['form'];
+  
+  unset($form['name']['#title']);
+  unset($form['name']['#description']);
+  $name = drupal_render($form['name']);
+  
+  unset($form['email']['#title']);
+  unset($form['email']['#description']);
+  $email = drupal_render($form['email']);
+  
+  unset($form['company']['#title']);
+  unset($form['company']['#description']);
+  $company = drupal_render($form['company']);
+  
+  $output = '
+    Hello, my name is '. $name .', and my email address is '. $email .'. I joyfully dedicate my days and brain power to laboring over at '. $company .'.<br /><br />
+    Can a Mad Libs-style form like this improve user experience? See <a href="http://www.lukew.com/ff/entry.asp?1007">this</a>, <a href="http://www.sitepoint.com/madlib-style-forms-increase-conversion-by-30-well-maybe/">this</a> and <a href="http://www.globaluserresearch.com/blog/2011/03/should-we-use-mad-libs-style-form">this</a>.<br /><br />
+    ' . drupal_render($form['submit']);
+  
+  $output .= drupal_render_children($form);
+  
+  return '<div class="inline-form">'. $output .'</div>';
+
+}
+
+/**
+ * Menu callback.
+ */
+function beauty14madlib_page() {
+  return drupal_get_form('beauty14madlib_form');
+}
