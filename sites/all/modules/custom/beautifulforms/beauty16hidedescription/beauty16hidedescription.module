@@ -23,10 +23,13 @@ function beauty16hidedescription_menu() {
  * Returns form render array.
  */
 function beauty16hidedescription_form($form, &$form_state) {
-  
-  drupal_add_css(drupal_get_path('module', 'beauty16hidedescription') . '/beauty16hidedescription.less');
-  drupal_add_js(drupal_get_path('module', 'beauty16hidedescription') . '/beauty16hidedescription.js');
-  
+
+  $form['#attached']['css'] = array(
+    drupal_get_path('module', 'beauty16hidedescription') . '/beauty16hidedescription.less',
+  );
+  $form['#attached']['js'] = array(
+    drupal_get_path('module', 'beauty16hidedescription') . '/beauty16hidedescription.js',
+  );
   $form['name'] = array(
     '#title' => t('Name'),
     '#type' => 'textfield',

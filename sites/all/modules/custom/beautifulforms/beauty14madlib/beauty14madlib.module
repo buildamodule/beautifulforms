@@ -22,9 +22,10 @@ function beauty14madlib_menu() {
  * Returns form render array.
  */
 function beauty14madlib_form($form, &$form_state) {
-  
-  drupal_add_css(drupal_get_path('module', 'beauty14madlib') . '/beauty14madlib.less');
-  
+
+  $form['#attached']['css'] = array(
+    drupal_get_path('module', 'beauty14madlib') . '/beauty14madlib.less',
+  );
   $form['name'] = array(
     '#title' => t('Name'),
     '#type' => 'textfield',
@@ -49,6 +50,9 @@ function beauty14madlib_form($form, &$form_state) {
   return $form;
 }
 
+/**
+ * Implements hook_theme().
+ */
 function beauty14madlib_theme() {
   return array(
     'beauty14madlib_form' => array(
@@ -57,6 +61,9 @@ function beauty14madlib_theme() {
   );
 }
 
+/**
+ * Theme function to render form.
+ */
 function theme_beauty14madlib_form($variables) {
   
   $form = $variables['form'];

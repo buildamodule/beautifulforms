@@ -27,10 +27,13 @@ function beauty03infield_menu() {
  */
 function beauty03infield_form($form, &$form_state) {
   
-  drupal_add_css(drupal_get_path('module', 'beauty03infield') . '/beauty03infield.less');
-  drupal_add_js(drupal_get_path('module', 'beauty03infield') . '/jquery.infieldlabel.min.js');
-  drupal_add_js(drupal_get_path('module', 'beauty03infield') . '/beauty03infield.js');
-  
+  $form['#attached']['css'] = array(
+    drupal_get_path('module', 'beauty03infield') . '/beauty03infield.less',
+  );
+  $form['#attached']['js'] = array(
+    drupal_get_path('module', 'beauty03infield') . '/jquery.infieldlabel.min.js',
+    drupal_get_path('module', 'beauty03infield') . '/beauty03infield.js',
+  );
   $form['name'] = array(
     '#title' => t('Name'),
     '#type' => 'textfield',

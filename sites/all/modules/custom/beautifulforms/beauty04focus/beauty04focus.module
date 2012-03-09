@@ -23,9 +23,12 @@ function beauty04focus_menu() {
  */
 function beauty04focus_form($form, &$form_state) {
   
-  drupal_add_css(drupal_get_path('module', 'beauty04focus') . '/beauty04focus.less');
-  drupal_add_js(drupal_get_path('module', 'beauty04focus') . '/beauty04focus.js');
-  
+  $form['#attached']['css'] = array(
+    drupal_get_path('module', 'beauty04focus') . '/beauty04focus.less',
+  );
+  $form['#attached']['js'] = array(
+    drupal_get_path('module', 'beauty04focus') . '/beauty04focus.js',
+  );
   $form['name'] = array(
     '#title' => t('Name'),
     '#type' => 'textfield',

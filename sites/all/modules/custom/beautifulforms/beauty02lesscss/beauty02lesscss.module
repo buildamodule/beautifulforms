@@ -22,8 +22,9 @@ function beauty02lesscss_menu() {
  */
 function beauty02lesscss_form($form, &$form_state) {
   
-  drupal_add_css(drupal_get_path('module', 'beauty02lesscss') . '/beauty02lesscss.less');
-  
+  $form['#attached']['css'] = array(
+    drupal_get_path('module', 'beauty02lesscss') . '/beauty02lesscss.less',
+  );
   $form['name'] = array(
     '#title' => t('Name'),
     '#type' => 'textfield',
