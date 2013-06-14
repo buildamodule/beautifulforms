@@ -1,5 +1,5 @@
 (function ($) {
-  Drupal.behaviors.beauty04focus = {
+  Drupal.behaviors.beauty16hidedescription = {
     attach: function (context, settings) {
       
       // Show when clicked.
